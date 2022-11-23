@@ -13,6 +13,11 @@
     "test": "jest --watchAll"
   },
   "jest": {
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ]
   }
 }

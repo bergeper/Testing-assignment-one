@@ -1,3 +1,4 @@
+import { addTodo, changeTodo, removeAllTodos } from "./functions";
 import { Todo } from "./models/Todo";
 
 let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -6,7 +7,6 @@ document.getElementById("clearTodos")?.addEventListener("click", () => {
   clearTodos(todos);
 });
 
-// Get new Todo
 (document.getElementById("newTodoForm") as HTMLFormElement)?.addEventListener(
   "submit",
   (e: SubmitEvent) => {
@@ -21,22 +21,16 @@ document.getElementById("clearTodos")?.addEventListener("click", () => {
   }
 );
 
-// Create new Todo
 function createNewTodo(todoText: string, todos: Todo[]) {
-  // Om todoText är minst 3 bokstäver så kör createNewTodo
-  if (todoText.length > 2) {
-    displayError("", false);
-    let newTodo = new Todo(todoText, false);
-    todos.push(newTodo);
+  let result = addTodo(todoText, todos);
 
+  if (result.success) {
     createHtml(todos);
   } else {
-    // ifall man inte skriver något.
-    displayError("Du måste skriva in minst tre tecken som uppgift", true);
+    displayError(result.error, true);
   }
 }
 
-// Create a list with your todos
 function createHtml(todos: Todo[]) {
   localStorage.setItem("todos", JSON.stringify(todos));
 
@@ -63,13 +57,11 @@ function createHtml(todos: Todo[]) {
   }
 }
 
-// Toggle the todo done
 function toggleTodo(todo: Todo) {
-  todo.done = !todo.done;
+  changeTodo(todo);
   createHtml(todos);
 }
 
-// Desplay error?
 function displayError(error: string, show: boolean) {
   let errorContainer: HTMLDivElement = document.getElementById(
     "error"
@@ -84,12 +76,9 @@ function displayError(error: string, show: boolean) {
   }
 }
 
-// Remove all todos
 function clearTodos(todos: Todo[]) {
-  todos.splice(0, todos.length);
-  console.log(todos);
+  removeAllTodos(todos);
   createHtml(todos);
 }
 
-// RUN THE program
 createHtml(todos);
