@@ -6,7 +6,11 @@ let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
 document.getElementById("clearTodos")?.addEventListener("click", () => {
   clearTodos(todos);
 });
-
+/*
+document.getElementById("sortTodos")?.addEventListener("click", () => {
+  sortTodos(todos);
+});
+*/
 (document.getElementById("newTodoForm") as HTMLFormElement)?.addEventListener(
   "submit",
   (e: SubmitEvent) => {
@@ -31,7 +35,7 @@ function createNewTodo(todoText: string, todos: Todo[]) {
   }
 }
 
-function createHtml(todos: Todo[]) {
+export function createHtml(todos: Todo[]) {
   localStorage.setItem("todos", JSON.stringify(todos));
 
   let todosContainer: HTMLUListElement = document.getElementById(
@@ -54,8 +58,8 @@ function createHtml(todos: Todo[]) {
     });
 
     todosContainer.appendChild(li);
-    sortTodos(todos[i].done, todos);
   }
+  sortTodos(todos);
 }
 
 function toggleTodo(todo: Todo) {
