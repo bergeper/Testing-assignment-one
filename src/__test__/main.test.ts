@@ -49,21 +49,31 @@ describe("Should add an object to list", () => {
     let todos: Todo[] = [];
     let todoText: string = "HEJSAN";
     let length: number = todos.length;
+
     // Act
-    addTodo(todoText, todos);
+    let result = addTodo(todoText, todos);
+
+    // Only to show for myself in console
     console.log(todos);
+    console.log("Ditt resultat blev", result.success);
+
     // Arrest
     expect(todos.length).toBe(length + 1);
   });
+
   test("If it doesnt work", () => {
     // Arrange
     let todos: Todo[] = [];
     let todoText: string = "HE";
-    let length = todos.length;
+
     // Act
-    addTodo(todoText, todos);
+    let result = addTodo(todoText, todos);
+
+    // Only to show for myself in console
     console.log(todos);
+    console.log("Ditt resultat blev", result.success);
+
     // Arrest
-    expect(todos.length).toBe(length + 1);
+    expect(todos.length).toBe(0);
   });
 });
