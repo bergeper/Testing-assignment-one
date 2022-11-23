@@ -28,9 +28,9 @@ describe("Should mark todo true or false", () => {
     changeTodo(todo);
     console.log(todo);
     // Arrest
-    expect(todo.done).toBe(true);
     expect(todo.done).toBe(!false);
   });
+
   test("Should mark todo false", () => {
     // Arrange
     let todo: Todo = new Todo("Todo", true);
@@ -40,12 +40,30 @@ describe("Should mark todo true or false", () => {
     console.log(todo);
     // Arrest
     expect(todo.done).toBe(!true);
-    expect(todo.done).toBe(false);
   });
 });
 
-test("Should add todo to list", () => {
-  // Arrange
-  // Act
-  // Arrest
+describe("Should add an object to list", () => {
+  test("If it works", () => {
+    // Arrange
+    let todos: Todo[] = [];
+    let todoText: string = "HEJSAN";
+    let length: number = todos.length;
+    // Act
+    addTodo(todoText, todos);
+    console.log(todos);
+    // Arrest
+    expect(todos.length).toBe(length + 1);
+  });
+  test("If it doesnt work", () => {
+    // Arrange
+    let todos: Todo[] = [];
+    let todoText: string = "HE";
+    let length = todos.length;
+    // Act
+    addTodo(todoText, todos);
+    console.log(todos);
+    // Arrest
+    expect(todos.length).toBe(length + 1);
+  });
 });

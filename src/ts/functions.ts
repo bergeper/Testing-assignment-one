@@ -1,4 +1,4 @@
-import { IAddResponse } from "./models/IAddResult";
+import { IAddResponse } from "./models/IAddResponse";
 import { Todo } from "./models/Todo";
 
 export function addTodo(todoText: string, todos: Todo[]): IAddResponse {
