@@ -1,4 +1,4 @@
-import { addTodo, changeTodo, removeAllTodos } from "./functions";
+import { addTodo, changeTodo, removeAllTodos, sortTodos } from "./functions";
 import { Todo } from "./models/Todo";
 
 let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -54,6 +54,7 @@ function createHtml(todos: Todo[]) {
     });
 
     todosContainer.appendChild(li);
+    sortTodos(todos[i].done, todos);
   }
 }
 
