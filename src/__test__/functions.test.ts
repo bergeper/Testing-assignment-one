@@ -64,7 +64,9 @@ describe("Should add an object to list", () => {
   test("If it doesnt work", () => {
     // Arrange
     let todos: Todo[] = [];
-    let todoText: string = "HE";
+
+    // detta kommer faila.
+    let todoText: string = "HEJ";
 
     // Act
     let result = addTodo(todoText, todos);
