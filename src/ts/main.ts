@@ -19,7 +19,7 @@ export function init() {
         document.getElementById("newTodoText") as HTMLInputElement
       ).value;
       // console.log("Todos when creating", todos);
-      createNewTodo(todoText, todos);
+      exports.createNewTodo(todoText, todos);
     }
   );
 }
@@ -67,8 +67,8 @@ export function createHtml(todos: Todo[]) {
 }
 
 function toggleTodo(todo: Todo) {
-  changeTodo(todo);
-  createHtml(todos);
+  exports.changeTodo(todo);
+  exports.createHtml(todos);
 }
 
 export function displayError(error: string, show: boolean) {
@@ -86,8 +86,8 @@ export function displayError(error: string, show: boolean) {
 }
 
 export function clearTodos(todos: Todo[]) {
-  removeAllTodos(todos);
-  createHtml(todos);
+  exports.removeAllTodos(todos);
+  exports.createHtml(todos);
 }
 
 init();

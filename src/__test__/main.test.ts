@@ -1,6 +1,7 @@
 /**
  * @jest-environment jsdom
  */
+import { addTodo } from "../ts/functions";
 import { Todo } from "../ts/models/Todo";
 import * as mainFN from "./../ts/main";
 
@@ -37,6 +38,23 @@ describe("newTodoForm", () => {
   });
 });
 */
+
+describe("DisplayError", () => {
+  test("Should add HTML to div", () => {
+    //Arrange
+    document.body.innerHTML = `<div id="error" class="error"></div>`;
+    let error: string = "Error";
+    let show: boolean = true;
+    //Act
+    mainFN.displayError(error, show);
+    //Assert
+    expect(
+      (document.getElementById("error") as HTMLDivElement).classList.length
+    ).toBe(2);
+  });
+});
+describe("CreateHTML", () => {});
+
 describe("createNewTodo", () => {
   test("Should create a html for Todo", () => {
     // arrange
@@ -64,31 +82,3 @@ describe("createNewTodo", () => {
 });
 
 // Gör om!
-describe("DisplayError", () => {
-  test("Should display error", () => {
-    //Arrange
-    document.body.innerHTML = `      
-    <div id="error" class="error"></div>
-    `;
-    let error: string = "Error";
-    let show: boolean = true;
-
-    //Act
-    mainFN.displayError(error, show);
-    //Assert
-    expect(show).toBe(true);
-  });
-  test("Should not display error", () => {
-    //Arrange
-    document.body.innerHTML = `
-    <div id="error" class="error"></div>
-    `;
-    let error: string = "Error";
-    let show: boolean = false;
-
-    //Act
-    mainFN.displayError(error, show);
-    //Assert
-    expect(show).toBe(false);
-  });
-});
