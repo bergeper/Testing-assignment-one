@@ -4,7 +4,50 @@
 import { Todo } from "../ts/models/Todo";
 import * as mainFN from "./../ts/main";
 import * as funcFN from "./../ts/functions";
+/*
+describe("CreateHTML", () => {
+  test("Should store item in localstorage", () => {
+    // arrange
+    let todos: Todo[] = [
+      new Todo("Äta kex", false),
+      new Todo("Dricka Kaffe", false),
+    ];
+    mainFN.createHtml(todos);
+    // act
+    let todosLS: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
+    // assert
+    expect(todosLS?.length).toBeGreaterThanOrEqual(2);
+  });
+  test("Should check if container is empty", () => {
+    // arrange
+    let todos: Todo[] = [];
+    document.body.innerHTML = `
+    <ul id="todos" class="todo"></ul>
+    `;
+    let todosContainer: HTMLUListElement = document.getElementById(
+      "todos"
+    ) as HTMLUListElement;
+    todosContainer.innerHTML = "trolololo";
+    // act
+    mainFN.createHtml(todos);
+    // assert
+    expect(todosContainer.innerHTML).toBe("");
+  });
 
+  test("Should create HTML for todos", () => {
+    // arrange
+    let todos: Todo[] = [new Todo("Äta kex", false)];
+    document.body.innerHTML = `<ul id="todos" class="todo"></ul>`;
+    let li: HTMLLIElement = document.createElement("li");
+    li.innerHTML = todos[0].text;
+    // act
+    mainFN.createHtml(todos);
+
+    // assert
+    expect(document.getElementById("todos")?.innerHTML).toBe(li);
+  });
+});
+*/
 describe("DisplayError", () => {
   test("Should add HTML to div", () => {
     //Arrange
@@ -30,7 +73,6 @@ describe("DisplayError", () => {
     ).toBe(1);
   });
 });
-describe("CreateHTML", () => {});
 
 describe("createNewTodo", () => {
   test("Should create a html for Todo", () => {
@@ -146,8 +188,4 @@ describe("ClearTodo", () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(1);
   });
-});
-
-describe("CreateHTML", () => {
-  test("Should create HTML for todos", () => {});
 });

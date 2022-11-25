@@ -24,12 +24,6 @@ export function init() {
   );
 }
 
-/*
-document.getElementById("sortTodos")?.addEventListener("click", () => {
-  sortTodos(todos);
-});
-*/
-
 export function createNewTodo(todoText: string, todos: Todo[]) {
   let result = addTodo(todoText, todos);
 
@@ -64,7 +58,6 @@ export function createHtml(todos: Todo[]) {
 
     todosContainer.appendChild(li);
   }
-  // sortTodos(todos);
 }
 
 export function toggleTodo(todo: Todo) {
@@ -90,6 +83,5 @@ export function clearTodos(todos: Todo[]) {
   removeAllTodos(todos);
   exports.createHtml(todos);
 }
-
 init();
 // createHtml(todos);
