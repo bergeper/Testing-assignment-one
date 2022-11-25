@@ -1,4 +1,9 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { addTodo, changeTodo, removeAllTodos } from "../ts/functions";
+import { IAddResponse } from "../ts/models/IAddResponse";
 import { Todo } from "../ts/models/Todo";
 
 test("Should clear the list of todos", () => {
@@ -9,17 +14,14 @@ test("Should clear the list of todos", () => {
 
   todos.push(todo);
 
-  console.log(todos);
-
   // Act
   removeAllTodos(todos);
-  console.log(todos);
 
   // Arrest
   expect(todos.length).toBe(0);
 });
 
-describe("Should mark todo true or false", () => {
+describe("ChangeTodo", () => {
   test("Should mark a todo true", () => {
     // Arrange
     let todo: Todo = new Todo("Todo", false);
@@ -43,7 +45,7 @@ describe("Should mark todo true or false", () => {
   });
 });
 
-describe("Should add an object to list", () => {
+describe("AddTodo", () => {
   test("If it works", () => {
     // Arrange
     let todos: Todo[] = [];
@@ -59,23 +61,23 @@ describe("Should add an object to list", () => {
 
     // Arrest
     expect(todos.length).toBe(length + 1);
+    expect(result.success).toBe(true);
   });
 
   test("If it doesnt work", () => {
     // Arrange
-    let todos: Todo[] = [];
-
-    // detta kommer faila.
-    let todoText: string = "HEJ";
+    let todos: Todo[] = [new Todo("Handla", false)];
+    let todoText: string = "HE";
 
     // Act
-    let result = addTodo(todoText, todos);
+    let result: IAddResponse = addTodo(todoText, todos);
 
     // Only to show for myself in console
     console.log(todos);
     console.log("Ditt resultat blev", result.success);
 
     // Arrest
-    expect(todos.length).toBe(0);
+    expect(todos.length).toBe(1);
+    expect(result.success).toBe(false);
   });
 });

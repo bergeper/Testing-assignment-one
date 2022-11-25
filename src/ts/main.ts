@@ -1,37 +1,41 @@
-import { addTodo, changeTodo, removeAllTodos, sortTodos } from "./functions";
+import { addTodo, changeTodo, removeAllTodos } from "./functions";
 import { Todo } from "./models/Todo";
 
 let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
 
-document.getElementById("clearTodos")?.addEventListener("click", () => {
-  clearTodos(todos);
-});
+export function init() {
+  // Button for clearing todos
+  document.getElementById("clearTodos")?.addEventListener("click", () => {
+    exports.clearTodos(todos);
+  });
+
+  // Input
+  (document.getElementById("newTodoForm") as HTMLFormElement)?.addEventListener(
+    "submit",
+    (e: SubmitEvent) => {
+      e.preventDefault();
+
+      let todoText: string = (
+        document.getElementById("newTodoText") as HTMLInputElement
+      ).value;
+      // console.log("Todos when creating", todos);
+      createNewTodo(todoText, todos);
+    }
+  );
+}
 /*
 document.getElementById("sortTodos")?.addEventListener("click", () => {
   sortTodos(todos);
 });
 */
-(document.getElementById("newTodoForm") as HTMLFormElement)?.addEventListener(
-  "submit",
-  (e: SubmitEvent) => {
-    e.preventDefault();
 
-    let todoText: string = (
-      document.getElementById("newTodoText") as HTMLInputElement
-    ).value;
-    console.log("Todos when creating", todos);
-
-    createNewTodo(todoText, todos);
-  }
-);
-
-function createNewTodo(todoText: string, todos: Todo[]) {
+export function createNewTodo(todoText: string, todos: Todo[]) {
   let result = addTodo(todoText, todos);
 
   if (result.success) {
-    createHtml(todos);
+    exports.createHtml(todos);
   } else {
-    displayError(result.error, true);
+    exports.displayError(result.error, true);
   }
 }
 
@@ -59,7 +63,7 @@ export function createHtml(todos: Todo[]) {
 
     todosContainer.appendChild(li);
   }
-  sortTodos(todos);
+  // sortTodos(todos);
 }
 
 function toggleTodo(todo: Todo) {
@@ -67,7 +71,7 @@ function toggleTodo(todo: Todo) {
   createHtml(todos);
 }
 
-function displayError(error: string, show: boolean) {
+export function displayError(error: string, show: boolean) {
   let errorContainer: HTMLDivElement = document.getElementById(
     "error"
   ) as HTMLDivElement;
@@ -81,9 +85,10 @@ function displayError(error: string, show: boolean) {
   }
 }
 
-function clearTodos(todos: Todo[]) {
+export function clearTodos(todos: Todo[]) {
   removeAllTodos(todos);
   createHtml(todos);
 }
 
-createHtml(todos);
+init();
+// createHtml(todos);
