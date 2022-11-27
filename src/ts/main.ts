@@ -41,6 +41,8 @@ export function createHtml(todos: Todo[]) {
     "todos"
   ) as HTMLUListElement;
 
+  // För att den inte ska krascha hela tiden
+
   todosContainer.innerHTML = "";
 
   for (let i = 0; i < todos.length; i++) {
@@ -84,4 +86,7 @@ export function clearTodos(todos: Todo[]) {
   exports.createHtml(todos);
 }
 init();
-// createHtml(todos);
+
+addEventListener("DOMContentLoaded", () => {
+  createHtml(todos);
+});

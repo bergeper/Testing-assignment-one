@@ -4,8 +4,20 @@
 import { Todo } from "../ts/models/Todo";
 import * as mainFN from "./../ts/main";
 import * as funcFN from "./../ts/functions";
-/*
+
 describe("CreateHTML", () => {
+  test("should create HTML elements", () => {
+    // arrange
+    document.body.innerHTML = `<ul id="todos" class="todo"></ul>`;
+
+    let todos: Todo[] = [new Todo("Äta kex", false)];
+
+    // act
+    mainFN.createHtml(todos);
+    // assert
+    expect(document.querySelector("li")?.innerHTML).toBe("Äta kex");
+  });
+
   test("Should store item in localstorage", () => {
     // arrange
     let todos: Todo[] = [
@@ -18,36 +30,21 @@ describe("CreateHTML", () => {
     // assert
     expect(todosLS?.length).toBeGreaterThanOrEqual(2);
   });
-  test("Should check if container is empty", () => {
-    // arrange
-    let todos: Todo[] = [];
-    document.body.innerHTML = `
-    <ul id="todos" class="todo"></ul>
-    `;
-    let todosContainer: HTMLUListElement = document.getElementById(
-      "todos"
-    ) as HTMLUListElement;
-    todosContainer.innerHTML = "trolololo";
-    // act
-    mainFN.createHtml(todos);
-    // assert
-    expect(todosContainer.innerHTML).toBe("");
-  });
 
-  test("Should create HTML for todos", () => {
+  test("should add class to listitem", () => {
     // arrange
-    let todos: Todo[] = [new Todo("Äta kex", false)];
     document.body.innerHTML = `<ul id="todos" class="todo"></ul>`;
-    let li: HTMLLIElement = document.createElement("li");
-    li.innerHTML = todos[0].text;
+    let todos: Todo[] = [new Todo("Äta kex", true)];
     // act
     mainFN.createHtml(todos);
-
     // assert
-    expect(document.getElementById("todos")?.innerHTML).toBe(li);
+    expect(document.querySelector("li")?.classList.length).toBe(2);
+    expect(document.querySelector("li")?.className).toBe(
+      "todo__text--done todo__text"
+    );
   });
 });
-*/
+
 describe("DisplayError", () => {
   test("Should add HTML to div", () => {
     //Arrange
