@@ -59,12 +59,15 @@ describe("DisplayError", () => {
     ).toBe(2);
   });
   test("Should not add HTML to div", () => {
+    // Arrange
     document.body.innerHTML = `<div id="error" class="error"></div>`;
     let error: string = "Error";
     let show: boolean = false;
 
+    // Act
     mainFN.displayError(error, show);
 
+    // Assert
     expect(
       (document.getElementById("error") as HTMLDivElement).classList.length
     ).toBe(1);
