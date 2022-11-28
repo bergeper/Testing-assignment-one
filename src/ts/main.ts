@@ -86,6 +86,4 @@ export function clearTodos(todos: Todo[]) {
 init();
 
 // För att det inte ska krascha
-addEventListener("DOMContentLoaded", () => {
-  createHtml(todos);
-});
+// createHtml(todos);
